@@ -1,0 +1,47 @@
+server:
+  forward-headers-strategy: framework
+
+security:
+  jwt:
+    issuer: ${IAM_ISSUER:http://localhost:8080}
+    audience: ${SECURITY_JWT_AUDIENCE:travel-platform-api}
+    private-key: ${SECURITY_JWT_PRIVATE_KEY:file:./keys/private.pem}
+    public-key: ${SECURITY_JWT_PUBLIC_KEY:file:./keys/public.pem}
+    key-id: ${SECURITY_JWT_KEY_ID:iam-key-1}
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: openid,profile,email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+
+iam:
+  public-base-url: ${IAM_BASE_URL:http://localhost:8081}
+  google:
+    link-token-minutes: ${IAM_GOOGLE_LINK_TOKEN_MINUTES:10}
+    channel-auth-days: ${IAM_CHANNEL_AUTH_DAYS:7}
+  oauth2:
+    token:
+      access-token-minutes: ${IAM_ACCESS_TOKEN_MINUTES:10}
+      mobile-access-token-minutes: ${IAM_MOBILE_ACCESS_TOKEN_MINUTES:1440}
+      authorization-code-minutes: ${IAM_AUTHORIZATION_CODE_MINUTES:5}
+      refresh-token-days: ${IAM_REFRESH_TOKEN_DAYS:7}
+      delegated-token-minutes: ${IAM_DELEGATED_TOKEN_MINUTES:5}
+    clients:
+      travel-web:
+        client-id: ${client-id}
+        client-secret: ${client-secret}
+        redirect-uris: ${IAM_TRAVEL_WEB_REDIRECT_URIS:http://127.0.0.1:8082/login/oauth2/code/iam}
+        post-logout-redirect-uris: ${IAM_TRAVEL_WEB_POST_LOGOUT_REDIRECT_URIS:http://127.0.0.1:8082/}
+        scopes: ${IAM_TRAVEL_WEB_SCOPES:openid,profile,email,phone,travel.read,travel.write,payment:create,payment:read,menu:read}
+        require-proof-key: ${IAM_TRAVEL_WEB_REQUIRE_PKCE:true}
+        require-authorization-consent: ${IAM_TRAVEL_WEB_REQUIRE_CONSENT:false}
+      n8n-orchestrator:
+        client-id: ${client-id}
+        client-secret: ${client-secret}
+        scopes: ${IAM_N8N_SCOPES:service:n8n,channel_auth:create,travel.create,payment:read,menu:read}

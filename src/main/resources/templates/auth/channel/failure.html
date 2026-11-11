@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>SafariGo - Authentication incomplete</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+</head>
+<body>
+<main class="result-shell">
+    <section class="result-card result-card-error" aria-labelledby="result-title">
+        <div class="brand-lockup">
+            <svg class="brand-icon" viewBox="0 0 64 64" role="img" aria-label="SafariGo">
+                <circle cx="32" cy="32" r="24"></circle>
+                <path d="M32 9v46M9 32h46M32 17l7 15-7 15-7-15 7-15Z"></path>
+                <path d="M39 32H25"></path>
+            </svg>
+            <span>SafariGo</span>
+        </div>
+        <div class="result-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 8v5"></path>
+                <path d="M12 17h.01"></path>
+                <circle cx="12" cy="12" r="9"></circle>
+            </svg>
+        </div>
+        <h1 id="result-title">We couldn't complete authentication</h1>
+        <p>Return to WhatsApp and request a new secure link.</p>
+    </section>
+</main>
+</body>
+</html>
