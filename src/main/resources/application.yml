@@ -34,14 +34,14 @@ iam:
       delegated-token-minutes: ${IAM_DELEGATED_TOKEN_MINUTES:5}
     clients:
       travel-web:
-        client-id: ${client-id}
-        client-secret: ${client-secret}
+        client-id: ${IAM_TRAVEL_WEB_CLIENT_ID:travel-web-bff}
+        client-secret: ${IAM_TRAVEL_WEB_CLIENT_SECRET:travel-web-dev-secret}
         redirect-uris: ${IAM_TRAVEL_WEB_REDIRECT_URIS:http://127.0.0.1:8082/login/oauth2/code/iam}
         post-logout-redirect-uris: ${IAM_TRAVEL_WEB_POST_LOGOUT_REDIRECT_URIS:http://127.0.0.1:8082/}
         scopes: ${IAM_TRAVEL_WEB_SCOPES:openid,profile,email,phone,travel.read,travel.write,payment:create,payment:read,menu:read}
         require-proof-key: ${IAM_TRAVEL_WEB_REQUIRE_PKCE:true}
         require-authorization-consent: ${IAM_TRAVEL_WEB_REQUIRE_CONSENT:false}
       n8n-orchestrator:
-        client-id: ${client-id}
-        client-secret: ${client-secret}
+        client-id: ${IAM_N8N_CLIENT_ID:n8n-orchestrator}
+        client-secret: ${IAM_N8N_CLIENT_SECRET:n8n-dev-secret}
         scopes: ${IAM_N8N_SCOPES:service:n8n,channel_auth:create,travel.create,payment:read,menu:read}
